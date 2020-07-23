@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+    <cpn>
+        //vue2.5.1一下 必须用template模板
+        <template slot-scope="slot">
+            <span>{{slot.abc.join('-')}}</span>
+        </template>
+    </cpn>
+</div>
+<script src="aaa.js" type="module"></script>
+<template id="cpn">
+    <div>
+        //绑定数据
+        <slot :abc="pLanguages">
+            <ul>
+                <li v-for="item in pLanguages">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app', //用于挂载要管理的元素
+        data: {
+            message: 'hello world!'
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {pLanguages: ['Java', 'JavaScript', 'python']}
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
