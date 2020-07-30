@@ -4,6 +4,7 @@
     <p>我是用户的相关信息</p>
     <p>{{getUserId}}</p>
     <p>{{$route.params.userId}}</p>
+<!--    <p>{{$route.params.detail}}</p>-->
   </div>
 </template>
 

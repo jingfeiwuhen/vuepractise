@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //promise 基础用法
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('hello world')
+            reject('1111')
+        }, 1000)
+    }).then((res) => {
+        console.log(res);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(res)
+            }, 1000)
+        })
+    }).then(res => {
+        //没有调用异步请求时候的简写
+        return Promise.resolve(res + 'aaaaa')
+    }).then(res => {
+        //没有调用异步请求时候的简写
+        return res + 'bbbbb'
+    }).then(res => console.log(res)).catch(msg => console.log(msg))
+
+    //promise.all 同时调用两次请求 同时处理
+    Promise.all([new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('result1')
+        }, 1000)
+    }), new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('result2')
+        }, 2000)
+    })]).then(results=>{
+        console.log(results);
+    })
+
+</script>
+</body>
+</html>
